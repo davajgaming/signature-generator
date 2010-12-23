@@ -18,4 +18,3 @@ config.php vars
  * dsn - The PDO connection string
  * dbUser - Username for the database
  * dbPass - Password for user mentioned above
-
