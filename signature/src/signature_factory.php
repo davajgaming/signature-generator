@@ -22,6 +22,9 @@ class Signature_Factory
 		}
 	}
 
+	/*
+	 * Load theme
+	 */
 	public function loadTheme($theme)
 	{
 		if(file_exists(SIGGEN_ROOT . 'plugins/' . $theme))
