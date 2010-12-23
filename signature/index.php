@@ -12,6 +12,7 @@ define('SIGGEN_ROOT', dirname(__FILE__) . '/');
 include SIGGEN_ROOT . 'config.php';
 include SIGGEN_ROOT . 'src/url_handler.php';
 include SIGGEN_ROOT . 'src/signature_factory.php';
+include SIGGEN_ROOT . 'src/field_builder.php';
 
 $url = new Url_Handler(URL_BASE);
 $page = $url->get('');
