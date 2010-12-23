@@ -18,3 +18,5 @@ Rename signature/sample.config.php to signature/config.php
  * $dsn: The PDO connection string
  * $dbUser: Username for the database
  * $dbPass: Password for user mentioned above
+ 
+ 
