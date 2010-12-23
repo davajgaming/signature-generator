@@ -8,3 +8,4 @@
  */
 
 define('SIGGEN_ROOT', dirname(__FILE__) . '/');
+
