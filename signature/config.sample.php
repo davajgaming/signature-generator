@@ -17,7 +17,8 @@ if(!defined('SIGGEN_ROOT'))
  * save the static signature images.
  *
  * URL_BASE is root web directory that the signature generator index.php
- * is located at relative to the domain.
+ * is located at relative to the domain. There needs to be a leading and
+ * trailing slash
  */
 $dsn = 'mysql:host=localhost;dbname=siggen';
 $dbuser = 'root';
@@ -26,4 +27,4 @@ $dbpass = 'myGoodPassword321';
 // Save path
 define('SIGGEN_SAVE_PATH', SIGGEN_ROOT . 'images/');
 // URL base
-define('URL_BASE', 'siggen/signature/');
+define('URL_BASE', '/signature/');

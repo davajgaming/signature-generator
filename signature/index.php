@@ -13,6 +13,7 @@ include SIGGEN_ROOT . 'config.php';
 include SIGGEN_ROOT . 'src/url_handler.php';
 include SIGGEN_ROOT . 'src/signature_factory.php';
 include SIGGEN_ROOT . 'src/field_builder.php';
+include SIGGEN_ROOT . 'src/plugin_functions.php';
 
 $url = new Url_Handler(URL_BASE);
 $page = $url->get('');
@@ -22,6 +23,13 @@ switch($page)
 	break;
 
 	case 'levelup':
+		$sigId = $url->get(0);
+
+		if($sigId == 0)
+		{
+			header('HTTP/1.1 403 Moved Permanently');
+			header('Location: ' . URL_BASE);
+		}
 	break;
 
 	default:
