@@ -67,7 +67,7 @@ class Plugin_Fungineer
 					'output'	=> 'img',
 					'pos-x'		=> 0,
 					'pos-x'		=> 0,
-					'data'		=> self::getWrenchs(),
+					'data'		=> self::getWrenches(),
 				),
 
 				'hat'		=> array(
@@ -83,7 +83,7 @@ class Plugin_Fungineer
 		);
 	}
 
-	public static function getWrenchs()
+	public static function getWrenches()
 	{
 		return array(
 			'w_original.png' => 'Vanilla Wrench',
