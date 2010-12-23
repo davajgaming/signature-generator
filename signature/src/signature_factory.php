@@ -67,8 +67,7 @@ class Signature_Factory
 			$this->themeData['width'],
 			$this->themeData['height'],
 			$this->themeData['imgtype'],
-			$this->themeData['imgqual'],
-		);
+			$this->themeData['imgqual']);
 
 		// Set up the text
 		$this->img
