@@ -15,6 +15,6 @@ Copy the "signature" directory to a location on your server.
 Rename signature/sample.config.php to signature/config.php
 
 config.php vars
- * dsn - The PDO connection string
- * dbUser - Username for the database
- * dbPass - Password for user mentioned above
+ * dsn: The PDO connection string
+ * dbUser: Username for the database
+ * dbPass: Password for user mentioned above
