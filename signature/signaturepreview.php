@@ -14,6 +14,6 @@ $theme = preg_replace("#[^a-z0-9]#i", '', $_REQUEST['theme']);
 $signature = new Signature_Factory();
 
 $signature->loadTheme($theme)
-	->loadUserData(array(0, $data))
+	->loadUserData(array(0, $_POST['data']))
 	->buildSignature()
 	->outputStream();
