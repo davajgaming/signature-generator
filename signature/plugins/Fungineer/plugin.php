@@ -22,13 +22,15 @@ class Plugin_Fungineer
 			'font'		=> 'tf2build.ttf',
 			'imgtype'	=> 'jpg',
 			'imgqual'	=> 90,
+			'color'		=> '#000000',
+			'lvlfield'	=> 'level',
 			'fields'	=> array(
 
 				'name'		=> array(
 					'input'		=> 'system',
 					'output'	=> 'text',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'size'		=> 10,
 					'data'		=> get_global_variable('steamid'),
 				),
@@ -39,7 +41,7 @@ class Plugin_Fungineer
 					'input'		=> 'radio',
 					'output'	=> 'img',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'data'		=> get_imgs_by_prefix('bg_'),
 				),
 
@@ -47,7 +49,7 @@ class Plugin_Fungineer
 					'input'		=> 'level',
 					'output'	=> 'text',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'size'		=> 14,
 				),
 
@@ -56,7 +58,7 @@ class Plugin_Fungineer
 					'input'		=> 'text:0:30',
 					'output'	=> 'text',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'size'		=> 14,
 				),
 
@@ -66,7 +68,7 @@ class Plugin_Fungineer
 					'input'		=> 'select:1:1',
 					'output'	=> 'img',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'data'		=> self::getWrenches(),
 				),
 
@@ -76,7 +78,7 @@ class Plugin_Fungineer
 					'input'		=> 'select:1:1',
 					'output'	=> 'img',
 					'pos-x'		=> 0,
-					'pos-x'		=> 0,
+					'pos-y'		=> 0,
 					'data'		=> get_imgs_by_list('hats.list'),
 				),
 			),

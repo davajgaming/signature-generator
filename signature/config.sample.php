@@ -12,7 +12,13 @@ if(!defined('SIGGEN_ROOT'))
  * $dsn - Connection string
  * $dbuser - The user to log in to the database with
  * $dbpass - The password for the user above
+ *
+ * SIGGEN_SAVE_PATH is a constant that must be defined in order to 
+ * save the static signature images.
  */
 $dsn = 'mysql:host=localhost;dbname=siggen';
 $dbuser = 'root';
 $dbpass = 'myGoodPassword321';
+
+// Save path
+define('SIGGEN_SAVE_PATH', SIGGEN_ROOT . 'images/');

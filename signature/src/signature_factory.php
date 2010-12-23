@@ -9,9 +9,7 @@
 
 class Signature_Factory
 {
-	public $sigOwner = '';
 	public $sigId = 0;
-
 	private $sigData = array();
 	private $themeData = array();
 	private $img;
@@ -43,34 +41,14 @@ class Signature_Factory
 	}
 
 	/*
-	 * Levels up the signature
+	 * Loads user data into our class properties
 	 *
-	 * @param int $inc Increment to level up by (default: 1)
-	 * @return $this
+	 * @param array $sigRow Database row
 	 */
 	public function loadUserData($sigRow)
 	{
 		$this->sigId = (int) $sigRow['sig_id'];
-		$this->sigOwner = $sigRow['sig_owner'];
 		$this->sigData = $sigRow['sig_data'];
-
-		return $this;
-	}
-
-	/*
-	 * Levels up the signature
-	 *
-	 * @param int $inc Increment to level up by (default: 1)
-	 * @return $this
-	 */
-	public function levelUp($fieldName = 'level', $inc = 1)
-	{
-		if(!is_int($this->sigData[$fieldName]))
-		{
-			$this->sigData[$fieldName] = (int) $this->sigData[$fieldName];
-		}
-
-		$this->sigData[$fieldName]++;
 
 		return $this;
 	}
@@ -82,19 +60,73 @@ class Signature_Factory
 	 */
 	public function buildSignature()
 	{
+		$this->img = new gd(
+			$this->themeData['width'],
+			$this->themeData['height'],
+			$this->themeData['imgtype'],
+			$this->themeData['imgqual'],
+		);
+
+		// Set up the text
+		$this->img
+			->set_font($this->themeData['font'])
+			->set_color($this->themeData['color']);
+
+		// Loop through the fields
+		foreach($this->themeData['fields'] as $name => $data)
+		{
+			// Check for an empty value 
+			if(empty($this->sigData[$name]))
+			{
+				continue;
+			}
+
+			if($data['output'] == 'text')
+			{
+				$this->img->print_text(
+					$this->sigData[$name],
+					$this->themeData['size'],
+					$this->themeData['pos-x'],
+					$this->themeData['pos-y']
+				);
+			}
+			else if($data['output'] == 'img')
+			{
+				$this->img->print_img(
+					$this->sigData[$name],
+					$this->themeData['pos-x'],
+					$this->themeData['pos-y']
+				);
+			}
+		}
+
 		return $this;
 	}
 
-	public function getUserData()
-	{
-		return $this->sigData;
-	}
-
+	/*
+	 * Output to stream
+	 */
 	public function outputStream()
 	{
+		if($this->img == null)
+		{
+			return false;
+		}
+		
+		$this->img->output_img();
 	}
 
+	/*
+	 * Output to file
+	 * {sigid}.{ext}
+	 */
 	public function outputFile()
 	{
+		if($this->img == null)
+		{
+			return false;
+		}
+
+		$this->img->output_img($this->sigId);
 	}
 }
