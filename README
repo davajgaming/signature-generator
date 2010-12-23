@@ -12,7 +12,7 @@ script.
 
 Rename src/sample.config.php to src/config.php
 
-Open src/config.php and enter the MongoDB information. You need not to perform
+Open src/config.php and enter the database information. You need not to perform
 any sort database installation.
 
 config.php vars
