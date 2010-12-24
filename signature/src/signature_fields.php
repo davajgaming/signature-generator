@@ -25,22 +25,44 @@ define('TPL_INPUT_TEXT',        '<input type="text" name="data[%s]" value="%s" /
  */
 class Signature_Fields
 {
-	private $theme = array();
-	private $dbRow = array();
+	/*
+	 * Validation errors
+	 */
+	public $errors = array();
 
+	/*
+	 * Defaults for the HTML fields
+	 */
+	public $defaults = array();
+	
+
+	/*
+	 * Array returned from the them getInfo() method
+	 */
+	private $theme = array();
+
+	/*
+	 * Constructor (not used now)
+	 */
 	public function __costruct()
 	{
 	}
 
+	/*
+	 * Load the theme into a property
+	 */
 	public function loadTheme($theme)
 	{
 		$this->theme = $theme;
 		return $this;
 	}
 
+	/*
+	 * Load defaults from an array (database)
+	 */
 	public function loadDefaults($data)
 	{
-		$this->dbRow = $data;
+		$this->defaults = $data;
 		return $this;
 	}
 
@@ -49,7 +71,7 @@ class Signature_Fields
 	 *
 	 * @return array
 	 */
-	public function factory()
+	public function buildFields()
 	{
 		// our container for the value to be returned
 		$html = array();
@@ -73,7 +95,7 @@ class Signature_Fields
 			{
 				case 'text':
 				case 'int':
-					$input = sprintf(TPL_INPUT_TEXT, $id, $this->dbRow[$id]);
+					$input = sprintf(TPL_INPUT_TEXT, $id, $this->defaults[$id]);
 				break;
 
 				case 'select':
@@ -82,7 +104,7 @@ class Signature_Fields
 
 					foreach($field['data'] as $val => $text)
 					{
-						$sel = ($this->dbRow[$id] == $val) ? ' selected="selected' : '';
+						$sel = ($this->defaults[$id] == $val) ? ' selected="selected' : '';
 						$options .= sprintf(TPL_INPUT_OPTION, $val, $sel, $text);
 					}
 
@@ -93,7 +115,7 @@ class Signature_Fields
 					$input = '';
 					foreach($field['data'] as $val => $text)
 					{
-						$sel = ($this->dbRow[$id] == $val) ? ' checked="checked' : '';
+						$sel = ($this->defaults[$id] == $val) ? ' checked="checked' : '';
 						$input .= sprintf(TPL_INPUT_RADIO, $id, $val, $sel, $text);
 					}
 
@@ -104,13 +126,13 @@ class Signature_Fields
 				break;
 
 				case 'checkbox':
-					$sel = ($this->dbRow[$id] == $val) ? ' checked="checked' : '';
-					$input = sprintf(TPL_INPUT_CHECKBOX, $id, $sel, $this->dbRow[$id]);
+					$sel = ($this->defaults[$id] == $val) ? ' checked="checked' : '';
+					$input = sprintf(TPL_INPUT_CHECKBOX, $id, $sel, $this->defaults[$id]);
 				break;
 
 				case 'system':
 				case 'level':
-					$input = sprintf(TPL_INPUT_HIDDEN, $id, $this->dbRow[$id]);
+					$input = sprintf(TPL_INPUT_HIDDEN, $id, $this->defaults[$id]);
 				break;
 
 				default:
@@ -124,5 +146,23 @@ class Signature_Fields
 				'input'	=> $input,
 			);
 		}
+
+		return $html;
+	}
+
+	/*
+	 * Loads and validates defauts from Post Data
+	 */
+	public function getPostData()
+	{
+		if(sizeof($_POST['data']))
+		{
+			foreach($_POST['data'] as $key => $val)
+			{
+				
+			}
+		}
+
+		return $this;
 	}
 }
