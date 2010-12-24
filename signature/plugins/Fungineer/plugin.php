@@ -32,7 +32,7 @@ class Plugin_Fungineer
 					'pos-x'		=> 0,
 					'pos-y'		=> 0,
 					'size'		=> 10,
-					'data'		=> get_global_variable('steamid'),
+					'data'		=> get_global_variable('steamID'),
 				),
 
 				'bg'		=> array(
