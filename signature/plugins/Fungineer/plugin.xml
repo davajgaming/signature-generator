@@ -1,17 +1,15 @@
 <?xml version="1.0" ?>
 <plugin>
-
-	<id></id>
-	<name><![CDATA[]]></name>
-	<height></height>
-	<width></width>
-	<font></font>
-	<imgtype></imgtype>
-	<imgquality></imgquality>
-	<color></color>
+	<id>Fungineer</id>
+	<name><![CDATA[Fungineering License]]></name>
+	<height>100</height>
+	<width>300</width>
+	<font>tf2build.ttf</font>
+	<imgtype>jpg</imgtype>
+	<imgquality>90</imgquality>
+	<color>#000000</color>
 	
 	<fields>
-
 		<field>
 			<id>name</id>
 			<input>system</input>
@@ -23,7 +21,7 @@
 		</field>
 
 		<field>
-			<id>name</id>
+			<id>bg</id>
 			<title>RED or BLU</title>
 			<desc>Your prefered color</desc>
 			<input>radio</input>
@@ -32,6 +30,5 @@
 			<pos-y>0</pos-y>
 			<data type="function">get_imgs_by_prefix('bg_')</data>
 		</field>
-
 	</fields>
 </plugin>
