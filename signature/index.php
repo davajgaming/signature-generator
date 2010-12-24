@@ -14,14 +14,22 @@ require SIGGEN_ROOT . 'bootstrap.php';
 switch($page)
 {
 	case '':
+		$template = $twig->loadTemplate('index_body.html');
 	break;
 
 	case 'levelup':
+		$template = $twig->loadTemplate('levelup.html');
 	break;
 
 	case 'login':
+		$template = $twig->loadTemplate('login.html');
 	break;
 
 	default:
+		$template = $twig->loadTemplate('create.html');
 	break;
 }
+
+// Display
+$template->display($vars);
+exit;
