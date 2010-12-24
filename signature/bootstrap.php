@@ -19,7 +19,6 @@ include SIGGEN_ROOT . 'src/field_builder.php';
 include SIGGEN_ROOT . 'src/plugin_functions.php';
 include SIGGEN_ROOT . 'src/SteamSignIn.php';
 include SIGGEN_ROOT . 'src/Twig/lib/Twig/Autoloader.php';
-include SIGGEN_ROOT . 'src/input_templates.php';
 
 // URLs
 $url = new Url_Handler(URL_BASE);
