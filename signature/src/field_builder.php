@@ -10,6 +10,17 @@
 if(!defined('SIGGEN_ROOT'))
 	exit;
 
+// All the templates for HTML generation
+define('TPL_INPUT_HIDDEN',      '<input type="hidden" name="data[%s]" value="%s" />');
+define('TPL_INPUT_CHECKBOX',    '<input type="checkbox" name="data[%s]" value="%s"%s />');
+define('TPL_INPUT_RADIO',       '<input type="radio" name="data[%s]" value="%s" %s/> %s<br />');
+define('TPL_INPUT_SELECT',      '<select name="%s"%s>%s</select>');
+define('TPL_INPUT_OPTION',      '<option value="%s"%s>%s</option>');
+define('TPL_INPUT_TEXT',        '<input type="text" name="data[%s]" value="%s" />');
+
+/*
+ * Field Builder
+ */
 class Field_Builder
 {
 	private $theme = array();
