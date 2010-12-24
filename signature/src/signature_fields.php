@@ -19,9 +19,11 @@ define('TPL_INPUT_OPTION',      '<option value="%s"%s>%s</option>');
 define('TPL_INPUT_TEXT',        '<input type="text" name="data[%s]" value="%s" />');
 
 /*
- * Field Builder
+ * Signature Fields
+ *
+ * Genreate HTML and input data
  */
-class Field_Builder
+class Signature_Fields
 {
 	private $theme = array();
 	private $dbRow = array();

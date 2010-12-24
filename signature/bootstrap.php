@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 include SIGGEN_ROOT . 'config.php';
 include SIGGEN_ROOT . 'src/url_handler.php';
 include SIGGEN_ROOT . 'src/signature_factory.php';
-include SIGGEN_ROOT . 'src/field_builder.php';
+include SIGGEN_ROOT . 'src/signature_fields.php';
 include SIGGEN_ROOT . 'src/plugin_functions.php';
 include SIGGEN_ROOT . 'src/SteamSignIn.php';
 include SIGGEN_ROOT . 'src/Twig/lib/Twig/Autoloader.php';
