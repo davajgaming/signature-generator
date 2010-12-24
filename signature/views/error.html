@@ -1,0 +1,10 @@
+{% extends "overall.html" %}
+
+{% block body %}
+
+<h1>{{ error_title }}</h1>
+<p>{{ error_msg }}</p>
+
+(% if go_back_link %}<br /><a href="{{ go_back_link }}">Go back</a>{% endif %}
+
+{% endblock %}

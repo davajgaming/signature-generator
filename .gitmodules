@@ -1,0 +1,3 @@
+[submodule "signature/src/Twig"]
+	path = signature/src/Twig
+	url = https://github.com/fabpot/Twig.git

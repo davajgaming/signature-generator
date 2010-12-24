@@ -22,4 +22,8 @@ class Field_Builder
 	{
 		$this->theme = $theme;
 	}
+
+	public function loadDefaults($data)
+	{
+	}
 }
