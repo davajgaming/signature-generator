@@ -10,6 +10,7 @@
 define('SIGGEN_ROOT', dirname(__FILE__) . '/');
 
 require SIGGEN_ROOT . 'bootstrap.php';
+$tpl_vars = array();
 
 switch($page)
 {
@@ -31,5 +32,5 @@ switch($page)
 }
 
 // Display
-$template->display($vars);
+$template->display($tpl_vars);
 exit;
