@@ -236,11 +236,20 @@ class Signature_Fields
 						break;
 
 						case 'checkbox':
+							// It's either true of false for a checkbox, take your pick.
 							$this->defaults[$key] = ($val) ? true : false;
 						break;
 
 						case 'raido':
-							$this->defaults[$key] = ($val) ? $val : false;
+							// We're not going to give this a default value if there is nothing to set as default
+							if(in_array($val, $this->theme['fields'][$key]['data']))
+							{
+								$this->defaults[$key] = ($val) ? $val : false;
+							}
+							else
+							{
+								$this->errors[$key] = 'An invalid option was selected';
+							}
 						break;
 
 						case 'color':
