@@ -13,8 +13,8 @@ if(!defined('SIGGEN_ROOT'))
 // All the templates for HTML generation
 define('TPL_INPUT_HIDDEN',      '<input type="hidden" name="data[%s]" value="%s" />');
 define('TPL_INPUT_CHECKBOX',    '<input type="checkbox" name="data[%s]" value="%s"%s />');
-define('TPL_INPUT_RADIO',       '<input type="radio" name="data[%s]" value="%s" %s/> %s<br />');
-define('TPL_INPUT_SELECT',      '<select name="%s"%s>%s</select>');
+define('TPL_INPUT_RADIO',       '<input type="radio" name="data[%s]" value="%s"%s /> %s<br />');
+define('TPL_INPUT_SELECT',      '<select name="data[%s][]"%s>%s</select>');
 define('TPL_INPUT_OPTION',      '<option value="%s"%s>%s</option>');
 define('TPL_INPUT_TEXT',        '<input type="text" name="data[%s]" value="%s" />');
 
@@ -115,7 +115,7 @@ class Signature_Fields
 					$input = '';
 					foreach($field['data'] as $val => $text)
 					{
-						$sel = ($this->defaults[$id] == $val) ? ' checked="checked' : '';
+						$sel = ($this->defaults[$id] == $val) ? ' checked="checked"' : '';
 						$input .= sprintf(TPL_INPUT_RADIO, $id, $val, $sel, $text);
 					}
 
@@ -126,7 +126,7 @@ class Signature_Fields
 				break;
 
 				case 'checkbox':
-					$sel = ($this->defaults[$id] == $val) ? ' checked="checked' : '';
+					$sel = ($this->defaults[$id] == $val) ? ' checked="checked"' : '';
 					$input = sprintf(TPL_INPUT_CHECKBOX, $id, $sel, $this->defaults[$id]);
 				break;
 
@@ -159,7 +159,95 @@ class Signature_Fields
 		{
 			foreach($_POST['data'] as $key => $val)
 			{
-				
+				// Check to make sure a few things are good:
+				// - The data posted is properly mapped to a key in the theme
+				// - The data is not a system or level input type which is non-user input
+				if (isset($this->theme['fields'][$key]) && 
+					$this->theme['fields'][$key]['input'] != 'system' &&
+					$this->theme['fields'][$key]['input'] != 'level')
+				{
+					$max = $min = false;
+					if(strpos(':', $this->theme['fields'][$key]['input']))
+					{
+						@list($type, $max, $min) = explode(':', $this->theme['fields'][$key]['input']);
+					}
+					else
+					{
+						$type = $this->theme['fields'][$key]['input'];
+					}
+
+					switch($type)
+					{
+						case 'text':
+							// Santize
+							$val = htmlspecialchars($val);
+
+							// First set defaults for our max and min
+							$max = ($max) ? $max : 255;
+							$min = ($min) ? $min : 0;
+
+							// Validate
+							if(strlen($val) > $max || strlen($val) < $min)
+							{
+								$this->errors[$key] = 'Incorrect length';
+							}
+
+							// We are giving the value each time so it will
+							// appear on the page. This is to ensure that they
+							// can fix accordingly
+							$this->defaults[$key] = $val;
+						break;
+
+						case 'int':
+							$val = (int) $val;
+
+							// Set defaults for max and min for our integer
+							$max = ($max) ? $max : 10000;
+							$min = ($min) ? $min : 0;
+
+							// Validate and set
+							if($val > $max || $val < $min)
+							{
+								$this->errors[$key] = 'Incorrect size';
+							}
+
+							$this->defaults[$key] = $val;
+						break;
+
+						case 'select':
+							$max = ($max) ? $max : 1;
+							$min = ($min) ? $min : 1;
+
+							if(!is_array($val))
+							{
+								$val = array($val);
+							}
+
+							if(sizeof($val) > $max || sizeof($val) < $min)
+							{
+								$this->errors[$key] = "The number selected needs to be between $min and $max";
+							}
+
+							$this->defaults[$key] = array();
+							foreach($val as $_v)
+							{
+								$this->defaults[$key][] = htmlspecialchars($_v);
+							}
+						break;
+
+						case 'checkbox':
+							$this->defaults[$key] = ($val) ? true : false;
+						break;
+
+						case 'raido':
+							$this->defaults[$key] = ($val) ? $val : false;
+						break;
+
+						case 'color':
+							// @todo
+						break;
+					}
+				}
 			}
 		}
 
