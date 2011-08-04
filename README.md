@@ -6,7 +6,8 @@ http://www.opensource.org/licenses/mit-license.php The MIT License
 All images, characters, and related content is property of their respective owners. The licence does not apply to these items, only to the code and images produced by the author(s) of this software.
 
 ## Requirements
- * PHP 5.3.0 min
+ * PHP 5.3.0 or greater
+ * [Imagine](https://github.com/avalanche123/Imagine) compatible PHP image library
  * MongoDB
 
 ## Installation
