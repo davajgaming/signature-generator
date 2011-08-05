@@ -18,7 +18,10 @@
  *
  *
  */
- 
+
+use SignatureGenerator\Core;
+use SignatureGenerator\Theme;
+
 define('IN_SIGNATURE', true);
 require __DIR__ . '/common.php';
 
@@ -50,7 +53,10 @@ switch($mode)
 
 	case 'create':
 		pageHeader('Create :: Signature Generator');
-		
+
+		$tSlug = htmlspecialchars($_GET['theme']);
+		$theme = new Theme($tSlug);
+
 		pageFooter();
 		break;
 

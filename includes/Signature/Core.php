@@ -25,7 +25,7 @@ class Core
 	 * Paths to source images
 	 */
 	public $sourcePath = '';	
-	
+
 	/*
 	 * Paths to completed images
 	 */
