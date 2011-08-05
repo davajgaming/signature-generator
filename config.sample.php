@@ -17,4 +17,5 @@ $mdbUsername 	= '';
 $mdbPassword 	= '';
 
 // Image Manip config
-$imgManipLib = ''; // Needs to be 
+// Needs to be Gd, Gmagick, or Imagick (Supported drivers by Imagine)
+$imgManipLib = 'Gd';

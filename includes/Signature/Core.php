@@ -47,7 +47,7 @@ class Core
 	/*
 	 * Set the theme source path
 	 *
-	 * @param string $path - Path to the themes. Should be an absolute path obtained via __DIR__ or something similar
+	 * @param string $path - Path to the source. Should be an absolute path obtained via __DIR__ or something similar
 	 * @return object - Instance of \SignatureGenerator\Core
 	 */
 	public function setSourcePath($path)
@@ -60,7 +60,7 @@ class Core
 	/*
 	 * Set the store path for completed signatures. MUST be writable by PHP
 	 *
-	 * @param string $path - Path to the themes. Should be an absolute path obtained via __DIR__ or something similar
+	 * @param string $path - Path to completed signatures. Should be an absolute path obtained via __DIR__ or something similar
 	 * @return object - Instance of \SignatureGenerator\Core
 	 */
 	public function setStorePath($path)

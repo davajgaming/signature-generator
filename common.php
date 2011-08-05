@@ -8,6 +8,7 @@
  */
 
 use SignatureGenerator\Core;
+use SignatureGenerator\Theme;
 
 if (!defined('IN_SIGNATURE')) exit;
 
@@ -22,3 +23,34 @@ if (!class_exists('Mongo'))
 	throw new RuntimeException("MongoDB Driver not found");
 }
 
+if (!file_exists(__DIR__ . '/config.php'))
+{
+	throw new RuntimeException("config.php not found");
+}
+
+require __DIR__ . '/config.php';
+
+// Connect to MongoDB
+$options = array();
+$options['connect'] = true;
+
+if (!empty($mdbUsername))
+{
+	$options['username'] = $mdbUsername;
+}
+
+if (!empty($mdbPassword))
+{
+	$options['password'] = $mdbPassword;
+}
+
+$mdbHost = ($mdbHost) ?: 'localhost';
+$mdbPort = ($mdbPort) ?: 27017;
+$mdbman = new Mongo("mongodb://{$mdbHost}:{$mdbPort}", $options);
+
+$db = $mdbman->selectDB($mdbDatabase);
+
+require __DIR__ . '/includes/Core.php';
+require __DIR__ . '/includes/Theme.php';
+
+$siggen = new Core();
