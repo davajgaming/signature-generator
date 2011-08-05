@@ -1,6 +1,6 @@
 # Signature Generator Framework
 
-Copyright (c) 2011 Sam Thompson 
+Copyright (c) 2011 Sam Thompson <sam@websyntax.net>
 http://www.opensource.org/licenses/mit-license.php The MIT License
 
 All images, characters, and related content is property of their respective owners. The licence does not apply to these items, only to the code and images produced by the author(s) of this software.

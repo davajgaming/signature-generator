@@ -1,0 +1,3 @@
+[submodule "includes/vendor/Imagine"]
+	path = includes/vendor/Imagine
+	url = https://github.com/avalanche123/Imagine.git
